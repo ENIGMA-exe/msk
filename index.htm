@@ -1,0 +1,707 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" 
+            integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="">
+    </head>
+    <style>
+        @font-face {
+        font-family:chines;
+        src: url(Zenzai\ Itacha.ttf);
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #2e3338cb;
+        }
+        /* ......................nav css(search box)..................... */
+        .main_s{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.432);
+        /*change the display mode here (none or flex)*/
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            z-index: 99;
+        }
+        .main_s>.search_box{
+            width: 60%;
+            height: 85%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            position: relative;
+            padding-top: 1%;
+        }
+        .main_s>.search_box>.close{
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 1.2rem;
+            font-weight: 550;
+            width: 10%;
+            height: 6%;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 1.5%;
+            right: 1%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .main_s>.search_box>.search_bar{
+            width: 75%;
+            height: 10%;
+            border-radius: 30px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .main_s>.search_box>.search_bar>input{
+            width: 100%;
+            height: 100%;
+            font-family: sans-serif;
+            font-size: 1.3rem;
+            padding-left: 2%;
+            border: none;
+            outline: none;
+             border-radius: 30px;
+        }
+        .main_s>.search_box>.search_content{
+            width: 96%;
+            height: 75%;
+            border-top: 3px solid rgb(146, 144, 144);
+            display: inline-flexbox;
+            overflow-y: scroll;
+        }
+        .main_s>.search_box>.search_content::-webkit-scrollbar{
+            display: none;
+        }
+        .main_s>.search_box>.search_content>.s_card{
+            cursor: pointer;
+            width: 18%;
+            height: 50%;
+            display:inline-block;
+            margin-left: 4%;
+            margin-top: 4%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .main_s>.search_box>.search_content>.s_card>img{
+            width: 100%;
+            height: 100%;
+            margin-bottom: 4%; 
+            outline: none;
+        }
+        /*.main_s>.search_box>.search_content>.s_card>p{
+            width: 100%;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: 600;
+            max-height: 11%;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }*/
+/*......................................nav bar............................................*/        
+        nav{
+            width: 98%;
+            height: 10%;
+        /*change the display property...*/
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: #06070d;
+            color: rgb(211, 210, 210);
+            margin-top: 0.5%;
+        }
+        .logo{
+            height:100%;
+            width:25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo>img{
+            width: 35%;
+            height: 99%;
+        }
+        .logo>.name{
+            width: 65%;
+            height: 100%;
+            font-size: 1.3rem;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            padding-left: 0.5%;
+            cursor: pointer;
+        }
+        nav>ul{
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 1.3rem;
+            font-family: sans-serif;
+            list-style: none;
+        }
+        nav>ul>li{
+            cursor: pointer;
+        }
+        nav>.search{
+            cursor: pointer;
+            width: 25%;
+            height: 55%;
+            border-radius: 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            font-family: sans-serif;
+            padding-left: 1%;
+            font-weight: bold;
+            background-color: #2a3036;
+            /*#15191e*/
+        }
+        nav>.search>i{
+            position: absolute;
+            right: 3%;
+            font-size: 2rem;
+            font-weight:500;
+        }
+        nav>.u_name{
+            width:13%;
+            height: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        nav>.u_name>p{
+            font-size: 1.2rem;
+            font-family: sans-serif;
+        }
+        nav>.u_name>i{
+            position: absolute;
+            right: 4%;
+            font-size: 1.4rem;
+        }
+/* ...................img header........................ */
+        .main_is{
+            height: 75%;
+            width: 98%;
+            position: relative;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            /*margin-top: 2%;*/
+            margin-bottom: 1%;
+            background-image: url('asset/req_img/iiit_bac.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            /*border-radius: 20px;*/
+        }
+        .sub_main{
+            height: 100%;
+            width: 50%;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            right: 0;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.281);
+            backdrop-filter: blur(3px);
+            clip-path: polygon(20% 0,100% 0,100% 100%,0 100%);
+            /*border-bottom-right-radius: 20px;
+            border-top-right-radius: 20px;*/
+        }
+        .sub_main>h1{
+            font-family: chines;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .sub_main>p{
+            height: 40%;
+            width: 60%;
+            text-align: justify;
+            margin-top: 1%;
+            font-family: chines;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            
+        }
+        .sub_main>button{
+            margin-top: 1%;
+            background-color: yellow;
+            border: none;
+            background-image: linear-gradient(to right,rgba(240, 240, 86, 0.836),rgba(219, 110, 110, 0.699));
+            color: rgba(0, 0, 0, 0.822)!important;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            height: 10%;
+            width: 20%;
+        }
+/* ........................................... */
+        .modal{
+            width:100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.199);
+            position: absolute;
+            z-index: 1;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal>.control{
+            width:50%;
+            height: 10%;
+            background-color: white;
+            position: relative;
+        }
+        .modal>.control>button{
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+            font-family: sans-serif;
+            font-weight: bold;
+            border-radius: 40px;
+            width: 20%;
+            height: 70%;
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            background-image: linear-gradient(to right, rgb(64, 11, 133), rgb(70, 70, 238)); ;
+        }
+        .modal>.modal_content{
+            width: 50%;
+            height: 70%;
+            background-color: white;
+            display: flex;
+        }
+        .modal>.modal_content>.md_img{
+            width: 50%;
+            height: 100%;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal>.modal_content>.md_img>img{
+            width: 70%;
+            height: 80%;
+            border-radius: 20px;
+        }
+        .modal>.modal_content>.md_para_details{
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            overflow-x: hidden;
+            /*border-left: 1px solid black;*/
+        }
+        .modal>.modal_content>.md_para_details>button{
+            width: 40%;
+            height: 10%;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            color: white;
+            background-image: linear-gradient(to right, rgb(64, 11, 133), rgb(70, 70, 238));
+        }
+        .modal>.modal_content>.md_para_details>.md_detail{
+            width: 100%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .modal>.modal_content>.md_para_details>.md_detail>.md_heading{
+            width: 70%;
+            height: 10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+        .modal>.modal_content>.md_para_details>.md_detail>.md_para{
+            width: 100%;
+            height: 80%;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-size: 1.1rem;
+            padding-left: 2%;
+        }
+        .main{
+            display: block;
+            align-items: center;
+            justify-content: center;
+            width: 98%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .heading{
+            width: 100%;
+            height: 10%;
+            border: 1px solid black;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            font-weight: bold;
+            font-size: 2rem;
+            padding-left: 2%;
+            background-color: rgb(10, 10, 19);
+            /*border-radius: 10px;*/
+            color: white;
+        }
+        .card_sec{
+            width: 100%;
+            height: 90%;
+            overflow-y: scroll;
+            display: inline-flexbox;
+            background-color: white;
+        }
+        .card_sec::-webkit-scrollbar{
+            display: block;
+        }
+        .card{
+            color: rgba(173, 172, 172, 0.548);
+            background-color: #0e0f18;
+            cursor: pointer;
+            padding-top: 1%;
+            width: 15%;
+            height: 55%;
+            align-items: center;
+            border-radius:10px;
+            display: inline-block;
+            margin-left: 1.5%;
+            margin-top: 2%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .card>.img_sec{
+            width: 85%;
+            height: 65%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card>.img_sec>img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .card>.card_heading{
+            color: rgba(214, 200, 200, 0.932);
+            width: 85%;
+            height: 9%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            font-size: 1.3rem;
+        }
+        .card>.para{
+            width: 85%;
+            height: 20%;
+            overflow-y: hidden;
+            text-align:center;
+            font-family: sans-serif;
+            margin-top: 2%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+/*.......................................................footer css....................................*/
+        footer{
+            width: 98%;
+            height: 55%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            background-color: #343a40;
+        }
+        footer>ul{
+            display: flex;
+            flex-direction: column;
+            height: 80%;
+            list-style-type: none;
+            
+        }
+        footer>ul>li{
+            display: flex;
+            font-size: 1.2rem;
+            font-family: sans-serif;
+            text-align: left;
+            justify-content: left;
+            margin-top: 10%;
+            color: white;
+            cursor: pointer;
+        }
+        footer>ul>li:nth-child(1){
+            justify-content: center;
+            color: rgb(233, 227, 227);
+            border-bottom: 1px solid white;
+        }
+        footer>ul>li>i{
+            font-size: 1.6rem;
+            margin-right:10px;
+        }
+        .f_sub_main{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+            display: flex;
+            align-items: center;
+            background-color: #212529;
+        }
+        .f_sub_main>p{
+            margin-left: 5%;
+            font-family: sans-serif;
+            color: white;
+        }
+        .f_sub_main>p:nth-child(2){
+            position: absolute;
+            right: 10%;
+        }        
+    </style>
+    <body>
+<!-- ..............nav........................................................ -->
+            <div class="main_s">
+            <div class="search_box">
+
+                <div class="close" onclick="divclose()">close</div>
+
+                <div class="search_bar">
+                    <input type="text" placeholder="search">
+                </div>
+
+                <div class="search_content">
+
+                    <div class="s_card">
+                        <img src='https://drive.google.com/uc?id=1LfhaUOesZyqWPNItBUZNyNijHRmCdPVr' alt="no img" />
+                    </div>
+                    <div class="s_card">
+                        <img src='https://drive.google.com/uc?id=1msjBN6ndkl_v6lK97h9_yJgh5t0YETDW' alt="no img" class="card_img" />
+                    </div>
+                    <div class="s_card">
+                        <img src='https://drive.google.com/uc?id=1woWSz6ikjhgCCQ9A4oDWA1B8O3-50eXT' alt="no img" class="card_img" />
+                    </div>
+                    <div class="s_card">
+                        <img src='https://drive.google.com/uc?id=1k6xjJJNMH7DAr22Cx8q6maH2_qszB67C' alt="no img" class="card_img" />
+                    </div>
+                    <div class="s_card">
+                        <img src='https://drive.google.com/uc?id=1Sgb6uJoJFCe54NRPLmnVNielu5G7R3LK' alt="no img" class="card_img" />
+                    </div>
+                    <div class="s_card">
+                        <img src='https://drive.google.com/uc?id=1Aocf4FQLefR1rSC-C7N3p33ZbKLqLeQW' alt="no img" class="card_img" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <nav>
+           <div class="logo">
+               <img src="asset/req_img/logo.png" alt="">
+               <div class="name">IIIT BHUBANESWAR</div>
+           </div>
+           
+           <ul>
+               <li>Home</li>
+               <li>Generus</li>
+               <li>about</li>
+           </ul>
+           <div class="search" onclick="serbox()">
+               search
+               <i class="fab fa-searchengin"></i>
+           </div>
+           <div class="u_name">
+               <p>u_name</p>
+               <i class="far fa-user"></i>
+           </div>
+       </nav>
+<!-- ............................................................................... -->  
+        <div class="main_is">
+            <div class="sub_main">
+                <h1>Magnam</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nihil doloremque neque quasi fuga debitis saepe magnam.
+                    Quasi ipsa odit id debitis illo aspernatur consectetur pariatur.
+                </p>
+                <button>View More</button>
+            </div>
+        </div>    
+<!-- ............................................................................... -->
+        <div class="modal">
+            <div class="control">
+                <button onclick="close_modal()">close</button>
+            </div>
+            <div class="modal_content">
+                    <div class="md_img"><img class="md_img_a" alt=""></div>
+
+                    <div class="md_para_details">
+
+                        <div class="md_detail">
+                            <div class="md_heading"></div>
+                            <div class="md_para"></div>
+                        </div>
+
+                        <button>register</button>
+                    </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="heading">Events</div>
+            <div class="card_sec">
+
+                <!-- <div class="card" id="unique" onclick="muskan()">
+                    <div class="img_sec"><img src="/luci.png" alt=""></div>
+                    <div class="card_heading">demo-demo</div>
+                    <div class="para">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, odio cupiditate? Iure dolorum cumque aperiam aspernatur, id beatae omnis ratione in excepturi! Corporis iusto, assumenda ab quo tempora rem dignissimos.
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+<!-- .................................................footer..................................... -->
+         <footer>
+            <ul>
+                <li>social connection</li>
+                <li><i class="fab fa-facebook"></i>Facebook</li>
+                <li><i class="fab fa-instagram-square"></i>Instagram</li>
+                <li><i class="fab fa-twitter-square"></i>Twitter</li>
+                <li><i class="fab fa-youtube"></i>Youtube</li>
+            </ul>
+            <ul>
+                <li>Project</li>
+                <li><i class="fab fa-github"></i>Github repo.</li>
+                <li><i class="fab fa-uncharted"></i>Old version</li>
+                <li><i class="fas fa-code"></i>Api Service</li>
+            </ul>
+            <ul>
+                <li>support</li>
+                <li><i class="fab fa-searchengin"></i>Troubleshooting</li>
+                <li><i class="fas fa-question-circle"></i>Common Questions</li>
+                <li><i class="fas fa-bug"></i>Report a Bug</li>
+                <li><i class="fas fa-hands-helping"></i>Get Help</li>
+            </ul>
+
+            <div class="f_sub_main">
+                <p>Made with  &  in Bentonville, Boston, Joplin, Seattle, and Vergennes.</p>
+                <p>Terms + privacy</p>
+            </div>
+        </footer>
+
+    </body>
+    
+    <script>
+//...........................data................................................        
+        var data = [
+        {
+            event_name:"potato",
+            details:"xbufei shfierhfu ehgiufdhfu egfuffdhugoehfo uiehuyfiert",
+            link:"asset/req_img/luci.png"
+        },
+        {
+            event_name:"soulab",
+            details:"big fat boi",
+            link:"asset/req_img/luci.png"
+        },]
+
+//...............................function.......................................................
+        var modal = document.getElementsByClassName("modal")[0];
+        var card_section = document.getElementsByClassName("card_sec")[0];
+        function muskan(e){
+            index = e;
+            index = Number(index)
+            item = data[index];
+            
+            document.getElementsByClassName("md_img_a")[0].setAttribute("src" , item.link);
+            document.getElementsByClassName("md_heading")[0].innerText = item.event_name;
+            document.getElementsByClassName("md_para")[0].innerText = item.details;
+
+            modal.style.display = "flex";
+        }
+        function close_modal(){
+            modal.style.display = "none";
+        };
+
+        data.forEach((item,index)=>{
+
+            var card_div = document.createElement("div");
+            card_div.setAttribute("class", "card");
+            card_div.setAttribute("id", index);
+            card_div.setAttribute("onclick", "muskan(this.id)");
+            //card_div.onclick = "muskan()";
+
+            var img_div = document.createElement("div");
+            img_div.setAttribute("class", "img_sec");
+
+            var img = document.createElement("img")
+            img.setAttribute("src", item.link);
+
+            img_div.appendChild(img);
+            card_div.appendChild(img_div);
+
+            var heading_div = document.createElement("div");
+            heading_div.setAttribute("class", "card_heading");
+            heading_div.innerText = item.event_name;
+            card_div.appendChild(heading_div);
+
+            var para_div = document.createElement("div");
+            para_div.setAttribute("class","para");
+            para_div.innerText = item.details ;
+            card_div.appendChild(para_div);
+
+            card_section.appendChild(card_div);
+            //console.log(item)
+        });
+//............................nav bar function.......................................
+
+        function serbox(){
+            $(".main_s").css("display", "flex").hide().fadeIn(300);
+                
+        };
+        function divclose(){
+            $(".main_s").fadeOut(300);
+        }
+    </script>
+</html>
